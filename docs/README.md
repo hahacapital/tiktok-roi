@@ -33,7 +33,7 @@
 | `MVP成本估算.md` | MVP 阶段成本估算：开发人力 + 数据平台 + 阿里云 + Claude API + 1688 代理 API，含方案对比 |
 | `软件开发服务合同.md` | Markdown 版开发服务合同（甲方 XX 跨境电商 / 乙方 张翼翔，¥4,000/天 × 30 天 = ¥120,000，13 条款含工期、成本分项、报价有效期、MVP 验收、需求变更分级、违约等）|
 | `MVP产品设计.md` | **MVP 产品形态与功能清单**：单一 Web 应用"ROI 定价决策工作台"，F1–F7 七个功能，明确"不做"清单防范围蔓延 |
-| `scripts/sync_feishu.sh` | 飞书文档同步脚本：基于 `lark-cli docs +create --wiki-space 7625648528720284882` 将 6 个本地 md 批量创建到新知识库根目录，支持 `bash scripts/sync_feishu.sh [key] [--dry-run]`（需本机已 `lark-cli auth login`，bot 已加入目标知识库）|
+| `scripts/sync_feishu.sh` | 飞书文档同步脚本：基于 `lark-cli docs +update --mode overwrite` 按 doc_id **覆盖**知识库 6 个现有文档，并把正文里的"张翼翔/孙栩尧/李远哲"自动转成 `<mention-user/>`；支持 `bash scripts/sync_feishu.sh [key]` 单独同步、`--dry-run` 预检、`--list` 查看映射（需本机已 `lark-cli auth login`）|
 
 ## MVP 产品形态
 
