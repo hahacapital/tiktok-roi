@@ -1,0 +1,53 @@
+{
+  "store_type": "JP_CROSS_BORDER_DIRECT",
+  "store_type_name_zh": "日本跨境直邮店铺",
+  "scope_note": "本价卡仅适用于日本跨境直邮店铺，不包括日本本土店和全托管店铺。MVP 阶段只接入此一种店铺类型，未来扩展时新增 store_type 字段对应的价卡文件。",
+  "source_url": "https://seller.tiktokshopglobalselling.com/university/essay?knowledge_id=6411933700818705",
+  "source_knowledge_id": "6411933700818705",
+  "effective_from": "2025-08-27T00:00:00+08:00",
+  "currency": "JPY",
+  "billing_rules": {
+    "min_billable_weight_g": 50,
+    "weight_unit": "g",
+    "weight_basis": "actual",
+    "settlement_node": "delivered_or_failed_delivery",
+    "max_parcel_weight_kg": 30,
+    "max_size_cm": "60x50x40",
+    "over_30kg": "billed at 20-30kg tier rate"
+  },
+  "tiers": {
+    "general": [
+      {"min_kg": 0,    "max_kg": 1,   "per_parcel": 530, "per_kg": 200},
+      {"min_kg": 1,    "max_kg": 2,   "per_parcel": 520, "per_kg": 240},
+      {"min_kg": 2,    "max_kg": 5,   "per_parcel": 510, "per_kg": 290},
+      {"min_kg": 5,    "max_kg": 10,  "per_parcel": 500, "per_kg": 295},
+      {"min_kg": 10,   "max_kg": 20,  "per_parcel": 500, "per_kg": 320},
+      {"min_kg": 20,   "max_kg": 30,  "per_parcel": 500, "per_kg": 325}
+    ],
+    "special": [
+      {"min_kg": 0,    "max_kg": 1,   "per_parcel": 535, "per_kg": 330},
+      {"min_kg": 1,    "max_kg": 2,   "per_parcel": 520, "per_kg": 435},
+      {"min_kg": 2,    "max_kg": 5,   "per_parcel": 510, "per_kg": 440},
+      {"min_kg": 5,    "max_kg": 10,  "per_parcel": 500, "per_kg": 465},
+      {"min_kg": 10,   "max_kg": 20,  "per_parcel": 500, "per_kg": 505},
+      {"min_kg": 20,   "max_kg": 30,  "per_parcel": 500, "per_kg": 505}
+    ],
+    "sensitive": [
+      {"min_kg": 0,    "max_kg": 1,   "per_parcel": 535, "per_kg": 330},
+      {"min_kg": 1,    "max_kg": 2,   "per_parcel": 520, "per_kg": 435},
+      {"min_kg": 2,    "max_kg": 5,   "per_parcel": 510, "per_kg": 440},
+      {"min_kg": 5,    "max_kg": 10,  "per_parcel": 500, "per_kg": 465},
+      {"min_kg": 10,   "max_kg": 20,  "per_parcel": 500, "per_kg": 505},
+      {"min_kg": 20,   "max_kg": 30,  "per_parcel": 500, "per_kg": 505}
+    ]
+  },
+  "formula": "freight_jpy = per_parcel + per_kg * actual_weight_kg",
+  "examples": [
+    {"goods_type": "general", "weight_g": 300,  "freight_jpy": 590},
+    {"goods_type": "general", "weight_g": 500,  "freight_jpy": 630},
+    {"goods_type": "general", "weight_g": 1000, "freight_jpy": 730},
+    {"goods_type": "general", "weight_g": 2000, "freight_jpy": 1000},
+    {"goods_type": "special", "weight_g": 300,  "freight_jpy": 634},
+    {"goods_type": "special", "weight_g": 500,  "freight_jpy": 700}
+  ]
+}
