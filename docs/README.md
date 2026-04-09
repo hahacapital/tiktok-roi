@@ -29,51 +29,54 @@
 | `TODO.md` | 项目任务清单（按 Phase 分阶段，含负责人和截止时间） |
 | `尧的视频会议.txt` | 原始会议录音转文字 |
 | `会议纪要-TikTok电商运营流程与AI改造方案.md` | 会议纪要整理：完整工作流程、痛点分析、AI 改造方案 |
-| `数据平台调研报告.md` | 数据源调研：FastMoss/Kalodata/EchoTik/Tabcut/Dashboardly/SociaVault/TikTok官方API/1688（结论：1688 官方无买家侧公开 API；**MVP 采用万邦 Onebound 为主 + Pangolin 为备的双源容灾方案**，按量付费，覆盖选品搜索、商品详情、图搜反查货源）|
-| `MVP成本估算.md` | MVP 阶段成本估算：开发人力 + 数据平台 + 阿里云 + Claude API + 1688 代理 API，含方案对比 |
-| `软件开发服务合同.md` | Markdown 版开发服务合同（甲方 XX 跨境电商 / 乙方 张翼翔，¥4,000/天 × 30 天 = ¥120,000，13 条款含工期、成本分项、报价有效期、MVP 验收、需求变更分级、违约等）|
-| `MVP产品设计.md` | **MVP 产品形态与功能清单**：单一 Web 应用"ROI 定价决策工作台"，F1–F7 七个功能，明确"不做"清单防范围蔓延 |
-| `scripts/sync_feishu.sh` | 飞书文档同步脚本：基于 `lark-cli docs +update --mode overwrite` 按 doc_id **覆盖**知识库 6 个现有文档，并把正文里的"张翼翔/孙栩尧/李远哲"自动转成 `<mention-user/>`；支持 `bash scripts/sync_feishu.sh [key]` 单独同步、`--dry-run` 预检、`--list` 查看映射（需本机已 `lark-cli auth login`）|
+| `数据平台调研报告.md` | 数据源调研：FastMoss/Kalodata/EchoTik/Tabcut/Dashboardly/SociaVault/TikTok官方API/1688（结论：1688 官方无买家侧公开 API；**Phase 1 采用万邦 Onebound 为主 + Pangolin 为备的双源容灾方案**，一次性充值 ¥2,000 不限次，覆盖选品搜索、商品详情、图搜反查货源）|
+| `MVP成本估算.md` | 一阶段成本估算：开发人力 + 数据平台 + AWS 东京区 + Claude API + 1688 代理 API |
+| `软件开发服务合同.md` | Markdown 版开发服务合同（合同总额 ¥138,080，工期 32 天，F1–F7 验收标准 + 25 项不含清单 + FastMoss API 接入附录 A）|
+| `MVP产品设计.md` | **一阶段产品形态与功能清单**：单一 Web 应用"ROI 定价决策工作台"，F1–F7 七个功能，明确"不做"清单防范围蔓延 |
+| `scripts/sync_feishu.sh` | 飞书文档同步脚本：基于 `lark-cli docs +update --mode overwrite` 按 doc_id **覆盖**知识库现有文档，并把正文里的"张翼翔/孙栩尧/李远哲"自动转成 `<mention-user/>`；支持 `bash scripts/sync_feishu.sh [key]` 单独同步、`--dry-run` 预检、`--list` 查看映射（需本机已 `lark-cli auth login`）|
 
-## MVP 产品形态
+## 一阶段（Phase 1）产品形态
 
 **单一 Web 应用"ROI 定价决策工作台"**（不是插件、不是 App、不是 Excel 增强）。完整设计见 [`MVP产品设计.md`](./MVP产品设计.md)。
 
-定位：**让运营在选品/上品阶段，输入货源成本和产品信息，系统就输出"该定多少钱、能不能做、ROI 多少、竞品卖多少"，并把决策结果存档复用。**
+定位：**让运营在选品/上品阶段，输入货源成本和产品信息，系统就输出"该定多少钱、能不能做、ROI 多少、竞品卖多少、同类竞品的达人分佣成本"，并把决策结果存档复用。**
 
-### MVP 必含的 7 个功能（F1–F7，共 18 天）
+### 一阶段必含的 7 个功能（F1–F7，开发约 21.5 天，总工期 32 天）
 
 | # | 功能 | 工时 | 说明 |
 |---|---|---|---|
-| F1 | 运费计算器 | 2 天 | 普/特/敏货费率、多打包组合 |
-| F2 | ROI 计算器 & 盈亏模拟 | 3 天 | 双向计算（给价算 ROI / 给 ROI 反推价），多 SKU |
-| F3 | 竞品价格带分析 | 3 天 | FastMoss search / topSelling / goodSalesList |
+| F1 | 运费计算器 | 2 天 | 普/特/敏货费率、多打包组合（仅日本跨境直邮店铺）|
+| F2 | ROI 计算器 & 盈亏模拟 | 3 天 | 给定目标 ROI → 倒算广告+达人分佣预算上限 |
+| F3 | 竞品价格带分析 + 类目爆款榜 | 3 天 | FastMoss search / topSelling（含 growth_rate）/ goodSalesList |
 | F4 | LLM 智能定价建议 | 3 天 | Claude Sonnet 4.6，输出结构化建议 + 理由 |
-| F5 | 商品工作台（决策存档） | 3 天 | CRUD + 历史建议对比，**MVP 灵魂** |
-| F6 | 店铺自测 Dashboard | 2 天 | TikTok Partner API 实测 GMV/ROI vs 建议偏差 |
-| F7 | 1688 图搜反查货源 | 1 天 | 万邦 Onebound `item_search_img` |
+| F5 | 商品工作台 + 决策存档 + 运营回填实测 | 3.5 天 | CRUD + 快照存档 + AI 建议 vs 实际偏差回填，**一阶段灵魂** |
+| F6 | 1688 图搜反查货源 | 1 天 | 万邦 Onebound `item_search_img`（含类目交叉验证）|
+| F7 | 达人分佣预估 | 3 天 + 1 天 Phase 0 预测试 | FastMoss creatorList/search/productList，按商家公开佣金率估算"投 N 个达人"成本 |
 
-### MVP 明确**不做**（防范围蔓延）
+**已从一阶段移除**：原先规划的「店铺自测 Dashboard」延后至多店铺阶段。单店当前直接看 TikTok 商家后台。
 
-达人评估 → Phase 2 · 投流优化 → Phase 3 · 内容生成 → Phase 2 · 浏览器插件 → Phase 4 · 订单分拣 → Phase 4 · 活动提醒 → Phase 4 · 多店铺 → Phase 2+
+### 一阶段明确**不做**（完整 25 项不含清单见合同 §6.1.2）
+
+投流优化 → Phase 3 · 达人评估系统完整版 → Phase 2 · 内容生成 → Phase 2 · 浏览器插件 → Phase 4 · 订单分拣 → Phase 4 · 活动提醒 → Phase 4 · 官方活动推荐 → Phase 4 · 多店铺/多租户 → Phase 2+ · TikTok Ads API → Phase 3 · 多语言 UI / SSO / 审批流 → Phase 2+
 
 ## 后续规划模块
 
-1. **AI 达人评估系统**（Phase 2）— 批量数据分析 + 稳定性评分 + 品类匹配推荐
+1. **多店铺 + 店铺自测 Dashboard + AI 达人评估完整版**（Phase 2）
 2. **内容生成工具**（Phase 2）— 智能标题 + 视频脚本 + 商品描述
-3. **投流优化助手**（Phase 3）— 预测初始 ROI + 实时预警 + 预算分配建议
+3. **投流优化助手**（Phase 3）— TikTok Ads API 接入（依赖甲方自店历史投流数据）
 4. **运营自动化工具集**（Phase 4）— 浏览器插件 + 活动提醒 + 订单分拣
 
 ## 实施路线
 
-- **Phase 0**（第 1 周，6 天）：数据源接入 + 基础架构 + MVP 验收标准制定
-- **Phase 1 MVP**（第 2–5 周，18 + 1 天缓冲）：F1–F7 定价决策工作台
-- **Phase 2**（第 6–7 周）：AI 达人评估 + 内容生成
-- **Phase 3**（第 8–9 周）：投流优化助手
-- **Phase 4**（第 10–13 周）：运营自动化工具集（浏览器插件、活动、订单）
+- **Phase 0**（第 1 周，6 天）：数据源接入 + 基础架构 + 一阶段验收标准制定 + F7 达人 quota 预测试
+- **Phase 1（一阶段）**（第 2–5 周，约 21.5 天开发 + 4 天联调测试 + 0.5 天缓冲）：F1–F7 定价决策工作台
+- **Phase 2**（第 6-8 周）：多店铺 + 店铺 Dashboard + 达人评估完整版 + 内容生成
+- **Phase 3**（第 9-10 周）：投流优化助手（依赖历史数据）
+- **Phase 4**（第 11-14 周）：运营自动化工具集（浏览器插件、活动、订单）
 
-## 技术栈（规划）
+## 技术栈
 
-- 前端：Web 应用（MVP 不做浏览器插件，延后到 Phase 4）
-- 数据源：FastMoss OpenAPI（主力）、TikTok Shop Partner API v2、TikTok Ads API、EchoTik API、Kalodata（补充）、**万邦 Onebound 1688 代理 API（主）+ Pangolin（备）双源容灾**
-- AI：大语言模型（标题/描述生成、达人分析）、数据分析模型
+- 前端：Web 应用（一阶段不做浏览器插件，延后到 Phase 4）
+- 基础设施：**AWS ap-northeast-1（东京区）**，应用服务器 + Claude Runner + RDS MySQL + ALB + S3/CloudFront
+- 数据源：FastMoss OpenAPI（商品 + 达人 + 视频）、**万邦 Onebound 1688 代理 API（主）+ Pangolin（备）**
+- AI：Claude Sonnet 4.6（F4 定价建议，开启 Prompt Caching 控成本）+ Haiku 4.5（异步预处理）
