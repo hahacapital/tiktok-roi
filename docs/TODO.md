@@ -34,6 +34,13 @@
   - 确认下单主体（公司 / 个人代付）与结算币种（¥ vs $）
   - 拿到正式 API key 后入 AWS Secret Manager，不入代码仓库
 
+- [ ] **申请 AWS Startup Credits** — 李远哲
+  - 入口：https://aws.amazon.com/startups
+  - 注册 AWS 创业项目账号、提交公司资料申请 credits
+  - 审批通过后把 credits attach 到 Phase 0 新开的 AWS 东京区账号，抵扣基础设施费用
+  - 所需材料：公司营业执照、业务说明（"AI-driven pricing decision platform for TikTok Shop Japan cross-border merchants"）、预估月度 AWS 支出 $300–500
+  - 具体额度、资格条件、审批周期以 AWS 官方页面为准（不采信任何非官方来源的数字）
+
 - [ ] **1688 数据源采购：优先走官方开放平台，兜底 Onebound ¥2,000 充值** — 李远哲
   - **第一优先**：推进 1688 官方开放平台（阿里巴巴开放平台）买家侧 API 申请，走通官方则 Onebound 费用可省（合同第三条备注 2）
   - **兜底方案**：如官方流程走不通，按合同一次性充值 Onebound ¥2,000（不限调用次数）
