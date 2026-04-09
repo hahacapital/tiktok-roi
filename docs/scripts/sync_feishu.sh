@@ -44,6 +44,7 @@ WIKI_SPACE="7625648528720284882"
 USER_ZHANG_YIXIANG="ou_7b3000af938aee4b035043e9635cd411"  # 张翼翔
 USER_SUN_XUYAO="ou_e8b984948b6a87527333b52cf7164eb6"      # 孙栩尧
 USER_LI_YUANZHE="ou_31a4483c766d771f4474dd2496f41149"     # 李远哲
+USER_CHUANGSHI="ou_81d2f0355860f34cf073a71cbe4c41e0"      # 创世跨境（赵总）
 
 # key | 本地 md 文件 | 飞书 doc_id（obj_token，非 node_token）
 MAPPING=(
@@ -79,6 +80,7 @@ if [[ -n "$LIST_ONLY" ]]; then
   printf "  %-10s %s\n" "张翼翔" "$USER_ZHANG_YIXIANG"
   printf "  %-10s %s\n" "孙栩尧" "$USER_SUN_XUYAO"
   printf "  %-10s %s\n" "李远哲" "$USER_LI_YUANZHE"
+  printf "  %-10s %s\n" "创世跨境" "$USER_CHUANGSHI"
   echo
   echo "Documents:"
   printf "  %-10s %-60s %s\n" "KEY" "FILE" "DOC_ID"
@@ -93,6 +95,8 @@ fi
 # 把姓名转成 <mention-user id="..."/>。本地 md 保持纯文本可读，只在推送前做转换。
 transform () {
   sed \
+    -e "s|@创世跨境|<mention-user id=\"${USER_CHUANGSHI}\"/>|g" \
+    -e "s|创世跨境|<mention-user id=\"${USER_CHUANGSHI}\"/>|g" \
     -e "s|张翼翔|<mention-user id=\"${USER_ZHANG_YIXIANG}\"/>|g" \
     -e "s|孙栩尧|<mention-user id=\"${USER_SUN_XUYAO}\"/>|g" \
     -e "s|李远哲|<mention-user id=\"${USER_LI_YUANZHE}\"/>|g" \

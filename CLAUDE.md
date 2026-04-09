@@ -46,7 +46,7 @@ Single web app. Seven features F1–F7:
 
 ## Team
 
-- 赵总 (owner) · 李远哲 (BD) · 孙栩尧 (ops lead) · 张翼翔 (dev)
+- 创世跨境 (owner) · 李远哲 (BD) · 孙栩尧 (ops lead) · 张翼翔 (dev)
 
 ## Working Notes
 
